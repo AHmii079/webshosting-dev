@@ -83,6 +83,20 @@
   function savepage_ShadowLoader(c){createShadowDOMs(0,document.documentElement);function createShadowDOMs(a,b){var i;if(b.localName=="iframe"||b.localName=="frame"){if(a<c){try{if(b.contentDocument.documentElement!=null){createShadowDOMs(a+1,b.contentDocument.documentElement)}}catch(e){}}}else{if(b.children.length>=1&&b.children[0].localName=="template"&&b.children[0].hasAttribute("data-savepage-shadowroot")){b.attachShadow({mode:"open"}).appendChild(b.children[0].content);b.removeChild(b.children[0]);for(i=0;i<b.shadowRoot.children.length;i++)if(b.shadowRoot.children[i]!=null)createShadowDOMs(a,b.shadowRoot.children[i])}for(i=0;i<b.children.length;i++)if(b.children[i]!=null)createShadowDOMs(a,b.children[i])}}}
   </script>
 <link href="contact.css" rel="stylesheet"/>
+<style>
+.pipedriveWebForms{display:none !important;}
+.local-contact-form{max-width:768px;margin:32px auto 0;padding:28px;border:1px solid #d9e1db;border-radius:20px;background:#fff;box-shadow:0 18px 40px rgba(16,34,57,.08);text-align:left}
+.local-contact-form__grid{display:grid;gap:16px}
+.local-contact-form__row{display:grid;gap:8px}
+.local-contact-form__row label{font-weight:700;color:#102239;font-size:14px}
+.local-contact-form__row input,.local-contact-form__row textarea{width:100%;padding:14px 16px;border:1px solid #cfd8d1;border-radius:12px;font:inherit;color:#102239;background:#f9fbf8;box-sizing:border-box}
+.local-contact-form__row textarea{min-height:160px;resize:vertical}
+.local-contact-form__note{margin-top:12px;color:#5a6672;font-size:13px;line-height:1.6}
+.local-contact-form__button{display:inline-flex;align-items:center;justify-content:center;margin-top:4px;padding:14px 22px;border:0;border-radius:999px;background:#0d493d;color:#fff;font-weight:700;cursor:pointer}
+.local-contact-form__button:hover{background:#1a564a}
+.local-contact-form__success{display:none;margin-top:14px;padding:12px 14px;border-radius:12px;background:#e7f6ee;color:#16553d;font-weight:600}
+.local-contact-form__success.is-visible{display:block}
+</style>
 </head>
 <body>
 <!--teleport start anchor-->
@@ -452,6 +466,35 @@
                   </span>
 </div>
 <div aria-hidden="false" class="pipedriveWebForms row-start-0 col-start-0 -col-end-1 -row-end-1 grid h-full w-full max-w-[768px] grid-cols-1 grid-rows-1 justify-items-center rounded-lg bg-white transition-all duration-200" data-pd-webforms="https://webforms.pipedrive.com/f/63msvrWuf3REk0QMXS0CxIWRNcMZf7kwt4ohC1yi0soevr3YM9lloBujXsCiQUJXLd" data-v-2907c39f="" id="idou3i2yh">
+<div class="local-contact-form" id="local-contact-form">
+<form action="contact.php" class="local-contact-form__grid" method="post">
+<div class="local-contact-form__row">
+<label for="name">Name</label>
+<input id="name" name="name" placeholder="Your full name" required="" type="text"/>
+</div>
+<div class="local-contact-form__row">
+<label for="email">Email</label>
+<input id="email" name="email" placeholder="you@example.com" required="" type="email"/>
+</div>
+<div class="local-contact-form__row">
+<label for="subject">Subject</label>
+<input id="subject" name="subject" placeholder="How can we help?" required="" type="text"/>
+</div>
+<div class="local-contact-form__row">
+<label for="message">Message</label>
+<textarea id="message" name="message" placeholder="Write your message here" required=""></textarea>
+</div>
+<button class="local-contact-form__button" type="submit">Send Message</button>
+</form>
+<div class="local-contact-form__note">Messages are delivered to info@hostingwebservers.com.</div>
+<div class="local-contact-form__success" id="local-contact-success">Your message has been sent.</div>
+</div>
+<script>
+if (new URLSearchParams(window.location.search).has('sent')) {
+  var success = document.getElementById('local-contact-success');
+  if (success) success.classList.add('is-visible');
+}
+</script>
 <iframe name="https://hosting.com/contact/-idou3i2yh" sandbox="allow-scripts" scrolling="no" src="https://webforms.pipedrive.com/f/63msvrWuf3REk0QMXS0CxIWRNcMZf7kwt4ohC1yi0soevr3YM9lloBujXsCiQUJXLd?embeded=1&amp;uuid=idou3i2yh" srcdoc="&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;base href=&quot;https://cdn.lon-2.pipedriveassets.com/leadbooster-chat/assets/web-forms/&quot;&gt;&lt;meta http-equiv=&quot;origin-trial&quot; content=&quot;A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==&quot;&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
