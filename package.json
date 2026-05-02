@@ -1,0 +1,18 @@
+{
+  "name": "hostingwebservers-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local HostingWebservers.com static site with a Node/Nodemailer contact API.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "nodemailer": "^6.10.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

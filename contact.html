@@ -467,7 +467,7 @@
 </div>
 <div aria-hidden="false" class="pipedriveWebForms row-start-0 col-start-0 -col-end-1 -row-end-1 grid h-full w-full max-w-[768px] grid-cols-1 grid-rows-1 justify-items-center rounded-lg bg-white transition-all duration-200" data-pd-webforms="https://webforms.pipedrive.com/f/63msvrWuf3REk0QMXS0CxIWRNcMZf7kwt4ohC1yi0soevr3YM9lloBujXsCiQUJXLd" data-v-2907c39f="" id="idou3i2yh">
 <div class="local-contact-form" id="local-contact-form">
-<form action="contact.php" class="local-contact-form__grid" method="post">
+<form action="/api/contact" class="local-contact-form__grid" id="local-contact-form-element" method="post">
 <div class="local-contact-form__row">
 <label for="name">Name</label>
 <input id="name" name="name" placeholder="Your full name" required="" type="text"/>
@@ -494,6 +494,52 @@ if (new URLSearchParams(window.location.search).has('sent')) {
   var success = document.getElementById('local-contact-success');
   if (success) success.classList.add('is-visible');
 }
+
+(function () {
+  var form = document.getElementById('local-contact-form-element');
+  var success = document.getElementById('local-contact-success');
+
+  if (!form) {
+    return;
+  }
+
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    var formData = new FormData(form);
+    var payload = Object.fromEntries(formData.entries());
+    var submitButton = form.querySelector('button[type="submit"]');
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+    }
+
+    try {
+      var response = await fetch(form.action, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error('Request failed');
+      }
+
+      form.reset();
+      if (success) success.classList.add('is-visible');
+    } catch (error) {
+      window.alert('Your message could not be sent right now. Please try again later.');
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send Message';
+      }
+    }
+  });
+}());
 </script>
 <iframe name="https://hosting.com/contact/-idou3i2yh" sandbox="allow-scripts" scrolling="no" src="https://webforms.pipedrive.com/f/63msvrWuf3REk0QMXS0CxIWRNcMZf7kwt4ohC1yi0soevr3YM9lloBujXsCiQUJXLd?embeded=1&amp;uuid=idou3i2yh" srcdoc="&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;base href=&quot;https://cdn.lon-2.pipedriveassets.com/leadbooster-chat/assets/web-forms/&quot;&gt;&lt;meta http-equiv=&quot;origin-trial&quot; content=&quot;A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==&quot;&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
